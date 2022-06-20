@@ -36,7 +36,7 @@ export const actualizarEstudiante = async(req,res)=>{
     try {
         const id = parseInt(req.params.id);
         const {codigo_universitario, ciclo_academico, idpersona} = req.body;
-        await pool.query('select *from fc_actualizar_estudiante($1, $2, $3, $4, $5)',[codigo_universitario, ciclo_academico, idpersona, id]);
+        await pool.query('select *from fc_actualizar_estudiante($1, $2, $3, $4)',[codigo_universitario, ciclo_academico, idpersona, id]);
         return res.status(200).json({
             message:'estudiante modificado correctamente ...!'
         });

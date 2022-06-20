@@ -22,8 +22,8 @@ export const listarSolicitudId = async(req,res)=>{
 
 export const crearSolicitud = async(req,res)=>{
     try {
-        const{nombre_empresa, nombre_dirigido, cargo_dirigido, fecha_solicitud, estado, idestudiante}= req.body;
-        await pool.query('select *from fc_crear_solicitud($1, $2, $3, $4, $5, $6)',[nombre_empresa, nombre_dirigido, cargo_dirigido, fecha_solicitud, estado, idestudiante]);
+        const{nombre_empresa, nombre_dirigido, cargo_dirigido, idestudiante}= req.body;
+        await pool.query('select *from fc_crear_solicitud($1, $2, $3, $4)',[nombre_empresa, nombre_dirigido, cargo_dirigido, idestudiante]);
         return res.status(200).json({
             message:'Solicitud registrado correctamente ...!'
         });
@@ -35,8 +35,8 @@ export const crearSolicitud = async(req,res)=>{
 export const actualizarSolicitud = async(req,res)=>{
     try {
         const id = parseInt(req.params.id);
-        const {nombre_empresa, nombre_dirigido, cargo_dirigido, fecha_solicitud, estado, idestudiante} = req.body;
-        await pool.query('select *from fc_actualizar_solicitud($1, $2, $3, $4, $5, $6, $7)',[nombre_empresa, nombre_dirigido, cargo_dirigido, fecha_solicitud, estado, idestudiante, id]);
+        const {nombre_empresa, nombre_dirigido, cargo_dirigido, idestudiante} = req.body;
+        await pool.query('select *from fc_actualizar_solicitud($1, $2, $3, $4, $5)',[nombre_empresa, nombre_dirigido, cargo_dirigido, idestudiante, id]);
         return res.status(200).json({
             message:'Solicitud modificado correctamente ...!'
         });
