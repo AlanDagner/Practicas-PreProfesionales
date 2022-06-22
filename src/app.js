@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 
+import gerenteRoutes from './routes/gerente.routes'
 import documentoRoutes from './routes/documento.routes'
 import personaRoutes from './routes/persona.routes'
 import solicitudRoutes from './routes/solicitud.routes'
@@ -18,6 +19,7 @@ app.get('/',(req,res)=>{
 
 });
 
+app.use('/api/auth/gerente', gerenteRoutes);
 app.use('/api/auth/documento', documentoRoutes);
 app.use('/api/auth/persona', personaRoutes);
 app.use('/api/auth/solicitud', solicitudRoutes);
