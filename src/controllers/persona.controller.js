@@ -1,5 +1,24 @@
 import { pool } from '../database'
 
+export const listarPersona = async (req,res)=>{
+    try {
+        const response = await pool.query('select *from fc_listar_persona()');
+        return res.status(200).json(response.rows);
+    } catch (e) {
+        return res.status(500).json('Error al listar persona');
+    }
+};
+
+export const listarPersonaId = async(req,res)=>{
+    try {
+        const id = parseInt(req.params.id);
+        const response = await pool.query('select * from fc_listar_persona_id($1)',[id]);
+        return res.status(200).json(response.rows);
+    } catch (e) {
+        return res.status(500).json('Error al listar Persona');
+    }
+};
+
 export const crearPersona = async(req,res)=>{
     try {
         const{nombres, apellido_paterno, apellido_materno, direccion, dni, correo, telefono}= req.body;
@@ -35,24 +54,5 @@ export const eliminarPersona = async(req,res)=>{
         });
     } catch (e) {
         return res.status(500).json('Error al eliminar persona ...!');
-    }
-};
-
-export const listarPersona = async (req,res)=>{
-    try {
-        const response = await pool.query('select *from fc_listar_persona()');
-        return res.status(200).json(response.rows);
-    } catch (e) {
-        return res.status(500).json('Error al listar persona');
-    }
-};
-
-export const listarPersonaId = async(req,res)=>{
-    try {
-        const id = parseInt(req.params.id);
-        const response = await pool.query('select * from fc_listar_persona_id($1)',[id]);
-        return res.status(200).json(response.rows);
-    } catch (e) {
-        return res.status(500).json('Error al listar Persona');
     }
 };

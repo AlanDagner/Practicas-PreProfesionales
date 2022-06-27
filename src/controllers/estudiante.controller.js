@@ -2,7 +2,7 @@ import { pool } from '../database'
 
 export const listarEstudiante = async (req,res)=>{
     try {
-        const response = await pool.query('Select *from tb_estudiante');
+        const response = await pool.query('Select *from fc_listar_estudiante()');
         return res.status(200).json(response.rows);
     } catch (e) {
         return res.status(500).json('Error al listar estediantes');
@@ -38,7 +38,7 @@ export const actualizarEstudiante = async(req,res)=>{
         const {codigo_universitario, ciclo_academico, idpersona} = req.body;
         await pool.query('select *from fc_actualizar_estudiante($1, $2, $3, $4)',[codigo_universitario, ciclo_academico, idpersona, id]);
         return res.status(200).json({
-            message:'estudiante modificado correctamente ...!'
+            message:'Estudiante modificado correctamente ...!'
         });
     } catch (e) {
         return res.status(500).json('Error al modificar estudiante ...!');
@@ -53,6 +53,6 @@ export const eliminarEstudiante = async(req,res)=>{
             message:'Estudiante eliminado correctamente ...!'
         });
     } catch (e) {
-        return res.status(500).json('Error al eliminar usuario ...!');
+        return res.status(500).json('Error al eliminar estudiante ...!');
     }
 };

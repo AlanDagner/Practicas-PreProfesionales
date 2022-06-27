@@ -38,7 +38,7 @@ export const actualizarSolicitud = async(req,res)=>{
         const {nombre_empresa, nombre_dirigido, cargo_dirigido, idestudiante} = req.body;
         await pool.query('select *from fc_actualizar_solicitud($1, $2, $3, $4, $5)',[nombre_empresa, nombre_dirigido, cargo_dirigido, idestudiante, id]);
         return res.status(200).json({
-            message:'Solicitud modificado correctamente ...!'
+            message:'La Solicitud se a modificado correctamente ...!'
         });
     } catch (e) {
         return res.status(500).json('Error al modificar solicitud ...!');
@@ -50,7 +50,7 @@ export const eliminarSolicitud = async(req,res)=>{
         const id = parseInt(req.params.id);
         await pool.query('select *from fc_eliminar_solicitud($1)',[id]);
         return res.status(200).json({
-            message:'Solicitud eliminado correctamente ...!'
+            message:'La solicitud se a eliminado correctamente ...!'
         });
     } catch (e) {
         return res.status(500).json('Error al eliminar solicitud ...!');

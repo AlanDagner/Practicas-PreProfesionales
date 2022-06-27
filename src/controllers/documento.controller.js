@@ -38,7 +38,7 @@ export const actualizarDocumento = async(req,res)=>{
         const {c_presentacion, c_convenio, c_aceptacion, plan_practica, constancia_final, idestudiante} = req.body;
         await pool.query('select *from fc_actualizar_documento($1, $2, $3, $4, $5, $6, $7)',[c_presentacion, c_convenio, c_aceptacion, plan_practica, constancia_final, idestudiante, id]);
         return res.status(200).json({
-            message:'Post modificado correctamente ...!'
+            message:'Documento modificado correctamente ...!'
         });
     } catch (e) {
         return res.status(500).json('Error al modificar documento ...!');
